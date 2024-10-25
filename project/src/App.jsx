@@ -19,6 +19,8 @@ import BookingInterface from './pages/Inventory.jsx';
 import { ThemeProvider } from './context/theme.js';
 import BookingPage from './components/BookingSection/BookingPage.jsx';
 import Inventory from './pages/Inventory.jsx';
+import HotelInventory from './components/Inventory/HotelInventory.jsx';
+
 
 const App = () => {
  
@@ -59,11 +61,12 @@ const App = () => {
               <Route path='/bookings/add-booking' element={<BookingPage />}  />
               <Route path="/properties" element={<Properties />} />
               <Route path='/roomtype' element={<RoomsListing />}  />
-              <Route path='/propertiesForm' element={<PropertiesForm  />}  />
+              <Route path='/properties/propertiesForm' element={<PropertiesForm  />}  />
               <Route path="/users" element={<Users />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/property/:id" element={<PropertyDashboard />} />
-              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/inventory" element={<HotelInventory />} />
+              
 
               <Route path="/login" element={<Login />} /> {/* Add the Login route */}
             </Routes>

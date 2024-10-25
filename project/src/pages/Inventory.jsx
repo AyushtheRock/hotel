@@ -104,11 +104,11 @@ const Inventory = () => {
 
         <div className="w-3/4 pl-4">
           <div className="flex space-x-2 mb-4">
-            <button className="bg-white dark:bg-[#0B1739] dark:text-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Add Payment</button>
-            <button className="bg-white border border-gray-300 dark:bg-[#0B1739] dark:text-white text-gray-700 px-3 py-1 rounded">Add Charges</button>
-            <button className="bg-white border border-gray-300 dark:bg-[#0B1739] dark:text-white text-gray-700 px-3 py-1 rounded">Apply Discount</button>
-            <button className="bg-white border border-gray-300 dark:bg-[#0B1739] dark:text-white text-gray-700 px-3 py-1 rounded">Print Invoice</button>
-            <button className="bg-white border border-gray-300 dark:bg-[#0B1739] dark:text-white text-gray-700 px-3 py-1 rounded flex items-center">
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Add Payment</button>
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Add Charges</button>
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Apply Discount</button>
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Print Invoice</button>
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded flex items-center">
               More <MoreHorizontal className="w-4 h-4 ml-1" />
             </button>
           </div>
