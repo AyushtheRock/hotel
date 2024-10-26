@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { ChevronDown, MoreHorizontal } from 'lucide-react';
+import AddPaymentModal from './AddPaymentModel';
+
+import AddChargesModal from './AddChargesModal';
+import AddDiscountModal from './AddDiscountModal';
+import { NavLink } from 'react-router-dom';
+
 
 const Inventory = () => {
   const [activeTab, setActiveTab] = useState('Folio Operations');
+  const [isModalOpen, setIsModalOpen] = useState(false); // Manage modal visibility
+  const [isChargesModalOpen, setIsChargesModalOpen] = useState(false);
 
   const tabs = ['Folio Operations', 'Booking Details', 'Guest Details', 'Room Charges'];
 
@@ -11,13 +19,75 @@ const Inventory = () => {
     { day: "2024-01-21 Tuesday", refNo: "242", particulars: "Room Charges", description: "", user: "Ayra", amount: 1200.00 },
     { day: "2024-01-21 Tuesday", refNo: "122", particulars: "Laundry", description: "Qty 2", user: "Ayra", amount: 400.00 },
   ];
+  const handlePaymentSubmit = (paymentMode) => {
+    // Handle payment mode submission logic here
+    console.log('Payment added:', paymentMode);
+    setIsModalOpen(false); // Close the modal after submission
+    setSelectedPayment(paymentMode); // Set the payment mode
+  };
+   
+  
+
+  const handleButtonClick = () => {
+
+    console.log("button clicked")
+    setIsModalOpen(true);
+    
+  };
+
+ 
+
+  
+
+  const handleChargesSubmit = (chargeData) => {
+    console.log("Charge added:", chargeData);
+    setIsChargesModalOpen(false);
+  };
+  
+  const openChargesModal = () => {
+    setIsChargesModalOpen(true);
+  };
+  
+  const closeChargesModal = () => {
+    setIsDiscountModalOpen(false);
+  };
+  
+
+  const [isDiscountModalOpen, setIsDiscountModalOpen] = useState(false);
+
+  const handleDiscountSubmit = (discount) => {
+    console.log("Discount applied:", discount);
+    // Add logic to handle discount submission here
+    setIsDiscountModalOpen(false);
+  };
+
+  const handleDiscountClick = () => {
+    setIsDiscountModalOpen(true);
+  };
+
+  const handleClose = () =>{
+    setIsModalOpen(false);
+  }
+
+  const handleChargesWindow = () => {
+    setIsChargesModalOpen(false);
+  }
+
+  const handleDiscountWindow = () => {
+    setIsDiscountModalOpen(false);
+  }
 
   return (
+
     <div className="bg-white text-black dark:text-white dark:bg-[#0B1739] rounded-lg shadow-md p-4">
+      
+
+      
+
       <div className="p-4 border rounded-lg shadow-md dark:bg-[#0B1739] bg-white dark:text-white  mx-auto ">
       <div className="flex items-center justify-between  px-4 gap-10">
         <div className='flex items-center gap-4'>
-        <button className="text-gray-500 dark:text-white hover:text-gray-700">
+        <NavLink to={'/inventory'} className="text-gray-500 dark:text-white hover:text-gray-700">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,7 +97,7 @@ const Inventory = () => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-        </button>
+        </NavLink>
         <div className="text-lg font-semibold text-black dark:text-white">Ms. Erza Scarlet</div>
         <div className="flex items-center space-x-2">
           <div className="flex items-center text-gray-600">
@@ -104,9 +174,18 @@ const Inventory = () => {
 
         <div className="w-3/4 pl-4">
           <div className="flex space-x-2 mb-4">
-            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Add Payment</button>
-            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Add Charges</button>
-            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Apply Discount</button>
+            <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded" onClick={()=>handleButtonClick()}>
+            Add Payment  </button>
+            <button
+  className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded"
+  onClick={openChargesModal}
+>
+  Add Charges
+</button>
+
+<button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded" onClick={handleDiscountClick}>
+          Apply Discount
+        </button>
             <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded">Print Invoice</button>
             <button className="bg-white border border-gray-300 text-gray-700 px-3 py-1 rounded flex items-center">
               More <MoreHorizontal className="w-4 h-4 ml-1" />
@@ -142,9 +221,35 @@ const Inventory = () => {
             </tbody>
           </table>
         </div>
+        <div>{
+          isModalOpen?<AddPaymentModal handleClose={handleClose}  />:null
+          }</div>
       </div>
+  
+        {/* {isModalOpen && (
+        <AddPaymentModal
+          onClose={() => setIsModalOpen(false)} // Close modal on cancel
+          onSubmit={handlePaymentSubmit} // Submit the payment
+        />
+      )} */}
+
+
+{isChargesModalOpen && (
+  <AddChargesModal onClose={closeChargesModal} onSubmit={handleChargesSubmit} handleChargesWindow={handleChargesWindow} />
+)}
+
+{isDiscountModalOpen && (
+        <AddDiscountModal
+          onClose={() => setIsDiscountModalOpen(false)}
+          onSubmit={handleDiscountSubmit}
+          handleDiscountWindow={handleDiscountWindow}
+        />
+      )}
+
     </div>
   );
 };
+    
+  
 
 export default Inventory;

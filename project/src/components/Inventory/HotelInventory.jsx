@@ -172,7 +172,7 @@ const HotelInventory = () => {
               <th className="border-r border-b w-[80px]">
                 <button
                   onClick={handlePrev}
-                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-[#0B1739] dark:text-white"
+                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-white dark:text-white"
                 >
                   🔙
                 </button>
@@ -195,7 +195,7 @@ const HotelInventory = () => {
               <th>
                 <button
                   onClick={handleNext}
-                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-[#0B1739] dark:text-white"
+                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-white dark:text-white"
                 >
                   🔜
                 </button>

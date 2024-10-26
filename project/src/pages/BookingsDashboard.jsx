@@ -13,7 +13,7 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
   
   
     return (
-      <div className="bg-white rounded-lg shadow p-4 mb-4">
+      <div className="bg-white rounded-lg shadow p-4 mb-4 dark:bg-[#0B1739] dark:text-white">
         <div className="flex justify-between items-center mb-2">
           <div>
             <h3 className="font-semibold text-lg">{guest}</h3>
@@ -21,14 +21,14 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
           </div>
           <div className="relative">
             <div
-              className="flex items-center cursor-pointer"
+              className="flex items-center cursor-pointer "
               onClick={() => setShowOptions(!showOptions)}
             >
               <img src="/src/assets/og-goibibo.aba291ed.png" alt="goibibo" className="h-7 mr-5" />
               <span className="text-gray-400">⋮</span>
             </div>
             {showOptions && (
-              <div className="absolute right-0 mt-1 bg-white border rounded shadow-lg z-10">
+              <div className="absolute dark:bg-[#0B1739] dark:text-white right-0 mt-1 bg-white border rounded shadow-lg z-10">
                 <button
                   className="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left"
                   onClick={handleOptionClick} // Close the menu on click
@@ -47,14 +47,14 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
         </div>
         
         {/* Check-in and Check-out Box */}
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-2 dark:bg-[#0B1739] dark:text-white">
           <div className="flex flex-col">
-            <div className="flex items-center space-x-4 bg-gray-100 p-2 rounded">
-              <div className="flex flex-col">
+            <div className="flex items-center space-x-4 bg-gray-100 p-2 rounded dark:bg-[#0B1739] dark:text-white">
+              <div className="flex flex-col dark:bg-[#0B1739] dark:text-white">
                 <span className="text-xs text-gray-500">Check In</span>
                 <span className="text-sm">{checkIn}</span>
               </div>
-              <div className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm">
+              <div className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-sm ">
                 {nights} Nights
               </div>
               <div className="flex flex-col">
@@ -135,7 +135,7 @@ const BookingsDashboard = () => {
   ];
   
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 dark:bg-[#0B1739] dark:text-white">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Bookings</h1>
         <NavLink to={'/bookings/add-booking'}className="bg-black text-white px-4 py-2 rounded text-sm">
@@ -149,7 +149,7 @@ const BookingsDashboard = () => {
           <input
             type="text"
             placeholder="Search by booking"
-            className="w-full border rounded-md pl-10 pr-4 py-2 text-sm"
+            className="w-full border rounded-md pl-10 pr-4 py-2 text-sm dark:bg-[#0B1739] dark:text-white"
           />
           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
         </div>
@@ -166,14 +166,14 @@ const BookingsDashboard = () => {
       {/* Tabs */}
 
       
-      <div className="flex border-x-slate-900">
+      <div className="flex border-x-slate-900 dark:bg-[#0B1739] dark:text-white">
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`px-4 py-2 text-sm transition-all duration-200 ${
+            className={`px-4 py-2 text-sm transition-all dark:bg-[#0B1739] dark:text-white duration-200 ${
               activeTab === tab
-                ? 'border-b-2 font-semibold border-x-2 border-t  border-l border-x-black border-t-black text-black border-b-green-700'
-                : 'text-gray-500 hover:text-black'
+                ? 'border-b-2 font-semibold border-x-2 border-t dark:bg-[#0B1739] dark:text-white  border-l border-x-black border-t-black text-black border-b-green-700'
+                : 'text-gray-500 hover:text-black dark:bg-[#0B1739] dark:text-white'
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -183,8 +183,8 @@ const BookingsDashboard = () => {
       </div>
 
       {/* Booking Cards */}
-      <div className='border border-x-black border-b-black border-t-red-600'>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className='border border-x-black border-b-black border-t-red-600 dark:bg-[#0B1739] dark:text-white'>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 dark:bg-[#0B1739] dark:text-white">
         {bookings.map((booking, index) => (
           <BookingCard key={index} {...booking} />
         ))}

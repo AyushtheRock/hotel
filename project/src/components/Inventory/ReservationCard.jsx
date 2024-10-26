@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ReservationCard = ({ handleClose }) => {
+const ReservationCard = ({ handleClose, reservationDetails }) => {
   const [isOptionsDropdownOpen, setIsOptionsDropdownOpen] = useState(false);
   const [isPrintDropdownOpen, setIsPrintDropdownOpen] = useState(false);
+  const optionsRef = useRef(null);
+  const printRef = useRef(null);
+  const navigate = useNavigate();
 
-  const toggleOptionsDropdown = () => {
-    setIsOptionsDropdownOpen(!isOptionsDropdownOpen);
+  const toggleDropdown = (dropdown) => {
+    if (dropdown === 'options') setIsOptionsDropdownOpen(!isOptionsDropdownOpen);
+    if (dropdown === 'print') setIsPrintDropdownOpen(!isPrintDropdownOpen);
   };
 
-  const togglePrintDropdown = () => {
-    setIsPrintDropdownOpen(!isPrintDropdownOpen);
-  };
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) setIsOptionsDropdownOpen(false);
+      if (printRef.current && !printRef.current.contains(event.target)) setIsPrintDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <section className="relative max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-300 dark:bg-[#0B1739]">
@@ -28,21 +39,20 @@ const ReservationCard = ({ handleClose }) => {
         </div>
         <div className="mt-2">
           <button
-            className="bg-gray-200  dark:bg-black text-black px-4 py-1 rounded hover:bg-gray-300"
+            className="bg-gray-200 dark:bg-black text-black px-4 py-1 rounded hover:bg-gray-300"
             aria-label="Edit Reservation"
           >
             Edit Reservation
           </button>
 
           {/* More Options Dropdown */}
-          <div className="inline-block relative ml-4">
+          <div className="inline-block relative ml-4" ref={optionsRef}>
             <button
               className="bg-gray-200 px-4 dark:bg-black py-1 rounded hover:bg-gray-300 flex items-center"
               aria-label="More Options"
-              onClick={toggleOptionsDropdown}
+              onClick={() => toggleDropdown('options')}
             >
               <span>More Options</span>
-              {/* Down arrow */}
               <span className="ml-2">▼</span>
             </button>
 
@@ -50,7 +60,7 @@ const ReservationCard = ({ handleClose }) => {
               <div className="absolute dark:bg-black dark:text-white right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
                 <div className="py-1">
                   <button
-                    className="w-full text-left  px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     aria-label="Check In"
                   >
                     Check-In
@@ -58,6 +68,7 @@ const ReservationCard = ({ handleClose }) => {
                   <button
                     className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     aria-label="Add Payment"
+                    onClick={() => navigate('/inventory/paymentfolio')}
                   >
                     Add Payment (Folio)
                   </button>
@@ -97,14 +108,13 @@ const ReservationCard = ({ handleClose }) => {
           </div>
 
           {/* Print/Send Dropdown */}
-          <div className="inline-block relative ml-4">
+          <div className="inline-block relative ml-4" ref={printRef}>
             <button
               className="bg-gray-200 dark:bg-black px-4 py-1 rounded hover:bg-gray-300 flex items-center"
               aria-label="Print or Send Reservation"
-              onClick={togglePrintDropdown}
+              onClick={() => toggleDropdown('print')}
             >
               <span>Print/Send</span>
-              {/* Down arrow */}
               <span className="ml-2">▼</span>
             </button>
 
@@ -141,19 +151,19 @@ const ReservationCard = ({ handleClose }) => {
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p className="font-semibold">Reservation Number</p>
-            <p>Rfb 01-1</p>
+            <p>{reservationDetails?.reservationNumber || "Rfb 01-1"}</p>
           </div>
           <div>
             <p className="font-semibold">Check In Date</p>
-            <p>20-01-24; 11:15:12 AM</p>
+            <p>{reservationDetails?.checkInDate || "20-01-24; 11:15:12 AM"}</p>
           </div>
           <div>
             <p className="font-semibold">Check Out Date</p>
-            <p>22-01-24; 12:00:00 PM</p>
+            <p>{reservationDetails?.checkOutDate || "22-01-24; 12:00:00 PM"}</p>
           </div>
           <div>
             <p className="font-semibold">Booking Date</p>
-            <p>12-01-24; 12:00:00 PM</p>
+            <p>{reservationDetails?.bookingDate || "12-01-24; 12:00:00 PM"}</p>
           </div>
         </div>
       </div>
@@ -163,29 +173,27 @@ const ReservationCard = ({ handleClose }) => {
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p className="font-semibold">Room Type</p>
-            <p>Single Room</p>
+            <p>{reservationDetails?.roomType || "Single Room"}</p>
           </div>
           <div>
             <p className="font-semibold">Room Number</p>
-            <p>102</p>
+            <p>{reservationDetails?.roomNumber || "102"}</p>
           </div>
           <div>
             <p className="font-semibold">Rate Plan</p>
-            <p>MAP</p>
+            <p>{reservationDetails?.ratePlan || "MAP"}</p>
           </div>
           <div>
             <p className="font-semibold">PAX</p>
             <div className="flex items-center">
-              <span className="mr-2">1</span>
-              <span className="mr-2" role="img" aria-label="Adults">
-                👁️
-              </span>
-              <span>0</span>
+              <span className="mr-2">{reservationDetails?.pax || "1"}</span>
+              <span className="mr-2" role="img" aria-label="Adults">👁️</span>
+              <span>{reservationDetails?.children || "0"}</span>
             </div>
           </div>
           <div>
             <p className="font-semibold">Avg. Daily Rate</p>
-            <p>Rs. 1200</p>
+            <p>{reservationDetails?.avgDailyRate || "Rs. 1200"}</p>
           </div>
         </div>
       </div>
