@@ -45,14 +45,14 @@ const App = () => {
   return (
     <ThemeProvider value={{themeMode, lightTheme, darkTheme}}>
     <Router>
-      <div className='dark:bg-gray-900 dark:text-white bg-white text-black  flex'>
+      <div className='flex dark:bg-gray-900 dark:text-white bg-white text-black '>
         
           {/* <div className=''> */}
-          <div className='hidden md:block md:w-[180px] lg:w-[230px]'>
+          <div>
             <Sidebar  /> {/* Pass isDarkMode to Sidebar */}
           </div>
 
-          <div className=' w-full '>
+          <div className='flex-1'>
 
             <Header  />
             <Routes>
