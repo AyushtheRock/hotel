@@ -17,3 +17,172 @@ export const assests = {
     
     // dashboardDark
 }
+
+export const doubleRoom = [
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+           {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+             {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+             {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1800',
+            },
+            
+        ]
+        export const singleRoom = [
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+            {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+             {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 8,
+                vacant: 0,
+                price: 'NA',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+            {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+             {
+                booked: 4,
+                vacant: 7,
+                price: '1200',
+            },
+        ]
+       
+    
+       

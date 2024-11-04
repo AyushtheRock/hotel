@@ -48,11 +48,11 @@ const App = () => {
       <div className='flex dark:bg-gray-900 dark:text-white bg-white text-black '>
         
           {/* <div className=''> */}
-          <div>
+          <div className='max-h-screen overflow-scroll'>
             <Sidebar  /> {/* Pass isDarkMode to Sidebar */}
           </div>
 
-          <div className='flex-1'>
+          <div className='flex-1 max-h-screen overflow-y-scroll' >
 
             <Header  />
             <Routes>

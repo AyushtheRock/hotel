@@ -1,234 +1,332 @@
-import React, { useState } from 'react';
-import ReservationCard from './ReservationCard';
-
-const rooms = {
-  'Single Room': [
-    { id: 1, type: 'Single Room', number: '101', status: Array(12).fill(4) },
-    { id: 2, type: 'Single Room', number: '102', status: Array(12).fill(4) },
-  ],
-  'Double Room': [
-    { id: 3, type: 'Double Room', number: '201', status: Array(12).fill(4) },
-    { id: 4, type: 'Double Room', number: '202', status: Array(12).fill(4) },
-  ],
-};
-
+import React, { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
+import { AiFillBackward, AiFillForward, AiOutlineArrowDown, AiOutlineDown } from "react-icons/ai";
+import {doubleRoom, singleRoom} from '../../assets/assests.js'
+import { MdCleaningServices, MdOutlineCleaningServices, MdOutlinePets, MdOutlineSmokeFree } from "react-icons/md";
+import CleanLogo from '../../assets/inventory/CleanLogo.jsx';
 const HotelInventory = () => {
-  const [selectedRoomType, setSelectedRoomType] = useState('Single Room');
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null); // New state for selected date
-  const [isOpen, setIsOpen] = useState(false);
 
-  const getDates = () => {
-    const dates = [];
-    for (let i = 0; i < 12; i++) {
-      const date = new Date(currentDate);
-      date.setDate(currentDate.getDate() + i);
-      dates.push(date);
+  const [showRooms , setShowRooms] = useState(true);
+  const [showDouble , setShowDouble] = useState(true);
+  const [allDates , setAllDates] = useState([]);
+  const [currentDate , setCurrentDate] = useState(dayjs());
+  const [roomFilter , setRoomFilter] = useState('both');
+  const getDates = (currentDate) => {
+    const dates = []
+    for (let i = 0; i < 14; i++) {
+        dates.push(dayjs(currentDate).add(i, 'day'))
     }
-    return dates;
-  };
 
-  const formatTime = (time) => {
-    return time === 'NA' ? 'NA' : `${time}00`;
+    setAllDates(dates);
   };
-
-  const handleRoomTypeChange = (type) => {
-    setSelectedRoomType(type);
-  };
-
-  const handleDateChange = (event) => {
-    setCurrentDate(new Date(event.target.value));
-  };
-
-  const handleButtonClick = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleNext = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(currentDate.getDate() + 7);
-    setCurrentDate(newDate);
-  };
-
-  const handlePrev = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(currentDate.getDate() - 7);
-    setCurrentDate(newDate);
-  };
-
-  const handleDateClick = (date) => {
-    setSelectedDate(date); // Set the selected date
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 1:
-        return 'bg-blue-100 text-blue-600';
-      case 2:
-        return 'bg-red-100 text-red-600';
-      case 3:
-        return 'bg-yellow-100 text-yellow-600';
-      case 4:
-      default:
-        return 'bg-green-100 text-green-600';
-    }
-  };
-
-  const isCurrentDate = (date) => {
-    return date.toDateString() === currentDate.toDateString();
-  };
-
-  const isSelectedDate = (date) => {
-    return selectedDate && date.toDateString() === selectedDate.toDateString();
-  };
+  
+  useEffect(() => {
+    getDates([currentDate]);
+  }, [currentDate]);
+    
+  const handleRoomFilter = (e) => {
+    setRoomFilter(e);
+  }
+  
+  
+  
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 dark:bg-[#0B1739] dark:text-white relative">
-      {/* Reservation Popup */}
-      {isOpen && (
-        <div className="absolute w-full">
-          <ReservationCard handleClose={handleClose} />
-        </div>
-      )}
+    <div className='w-full h-full pt-4 bg-[#F3F3F3] dark:bg-inherit px-6'>
 
-      {/* Inventory Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Inventory</h1>
-        <div className="flex items-center gap-4">
-          <button className="px-4 py-2 border rounded-md text-sm bg-black text-white dark:bg-[#0B1739] dark:text-white">
-            Calendar
-          </button>
-          <button
-            onClick={handleButtonClick}
-            className="px-4 py-2 border rounded-md text-sm bg-black text-white dark:bg-[#0B1739] dark:text-white"
-          >
-            + Add People
-          </button>
+      <div className='flex justify-between items-center px-8'>
+        <div><p className='text-2xl font-semibold dark:text-white'>Inventory</p></div>
+        <div className='flex gap-4 items-center'>
+
+          <button className='bg-black dark:bg-[#9B27D0] px-4 py-2 rounded text-white '>Calander</button>
+          <button className='bg-black dark:bg-[#9B27D0] px-4 py-2 rounded text-white '><img src="./src/assets/person-add.png" alt="" /></button>
+          
         </div>
       </div>
+      <div className='flex gap-6 mt-6 bg-white dark:bg-[#080F26] rounded-md'>
 
-      {/* Stats Bar with Date Picker */}
-      <div className="flex gap-6 mb-4 text-sm border-b pb-3 items-center">
-        {/* Date Picker */}
-        <div className="w-[200px]">
-          <input
-            type="date"
-            value={currentDate.toISOString().split('T')[0]}
-            onChange={handleDateChange}
-            className="px-3 py-2 border rounded-md w-full bg-white dark:bg-[#0B1739] dark:text-white"
-          />
+        <div className='px-2 py-2'>
+          
+          <label htmlFor="date">
+            <input onChange={e=>setCurrentDate(e.target.value)}   value={dayjs(currentDate).format('YYYY-MM-DD')} type="date" id="date"  className='px-4 py-2 rounded-md dark:text-black border border-gray-300 ' />
+          </label>
+             
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>All</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Vacant</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Occupies</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Reserved</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Blocked</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Due Out</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
+        </div>
+        <div className='flex gap-3 items-center text-sm'>
+          <p className='text-gray-500'>Dirty</p>
+          <p className='rounded-full text-sm bg-gray-300  dark:bg-[#9B27D0] px-2 py-1'>57</p>
         </div>
 
-        {/* Stats */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1">
-            <span className="text-gray-600 dark:text-white">All:</span>
-            <span className="font-medium">97</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-600 dark:text-white">Vacant:</span>
-            <span className="font-medium">97</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-600 dark:text-white">Occupied:</span>
-            <span className="font-medium">24</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-600 dark:text-white">Reserved:</span>
-            <span className="font-medium">22</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="text-gray-600 dark:text-white">Blocked:</span>
-            <span className="font-medium">2</span>
-          </div>
-        </div>
       </div>
 
-      {/* Table with Navigation */}
-      <div className="overflow-x-auto w-full">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr>
-              <th className="p-2 border-r w-[100px] border-b bg-gray-50 sticky top-0 z-10 dark:bg-[#0B1739] dark:text-white">
-                <div className="relative">
-                  <label className="text-sm block text-gray-600 mb-1 dark:text-white">Room Type</label>
-                  <select
-                    className="block w-full px-3 py-2 text-sm border rounded-md bg-white dark:bg-[#0B1739] dark:text-white"
-                    value={selectedRoomType}
-                    onChange={(e) => handleRoomTypeChange(e.target.value)}
-                  >
-                    {Object.keys(rooms).map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </th>
-              <th className="border-r border-b w-[80px]">
-                <button
-                  onClick={handlePrev}
-                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-white dark:text-white"
-                >
-                  🔙
-                </button>
-              </th>
-              
-              {getDates().map((date, index) => (
-                <th
-                  key={index}
-                  onClick={() => handleDateClick(date)} // Handle date click
-                  className={`p-2 border-r border-b min-w-[50px] cursor-pointer ${
-                    isSelectedDate(date)
-                      ? 'bg-green-200 dark:bg-green-800' // Highlight selected date
-                      : null
-                  }`}
-                >
-                  <div className="text-sm text-gray-600 dark:text-white">{date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
-                  <div className="font-medium">{date.getDate()}</div>
-                </th>
-              ))}
-              <th>
-                <button
-                  onClick={handleNext}
-                  className="top-7 w-[50px] h-[50px] p-2 bg-orange-300 text-2xl rounded-full hover:bg-yellow-300 z-20 dark:bg-white dark:text-white"
-                >
-                  🔜
-                </button>
-              </th>
-            </tr>
-          </thead>
+      <div className='flex border-t border-gray-300 px-2 bg-[#fffefe] dark:bg-inherit'>
 
-          <tbody>
-            {rooms[selectedRoomType].map((room) => (
-              <tr key={room.id} className="border-b dark:bg-[#0B1739] dark:text-white">
-                <td className="p-2 border-r bg-white sticky left-0 dark:bg-[#0B1739] dark:text-white">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{room.type}</span>
-                    <span className="text-gray-500">({room.number})</span>
+        <div className='my-auto py-3 mr-5'>
+          <label htmlFor="types" className=''>
+            <select onChange={(e) => handleRoomFilter(e.target.value)} defaultValue='both'  name="types" id="types" className='px-1 py-2 rounded-md dark:text-black border border-gray-300'>
+              <option value="both" disabled hidden>Room Types</option>
+              <option value="single">Single Room (02)</option>
+              <option value="double">Double Room (04)</option>
+            </select>
+          </label>
+        </div>
+
+        <div className='flex  items-center w-full'>
+          <button  
+          className='border rounded-full px-2 py-2 flex items-center'
+          onClick={() => {setCurrentDate(dayjs(currentDate).subtract(14, 'day'))}}><AiFillBackward /><span className='text-xs'>prev</span> </button>
+          {
+            allDates.map((day,index) => {
+              return (
+                <div key={index} className='flex-1 '>
+                  <div className='flex flex-col text-sm border-x'>
+                  <p className='text-center text-sm text-gray-500'>{day.format('ddd')}</p>
+                  <p className='text-center font-semibold'>{day.format('DD')}</p>
+                  <p className='text-center text-sm text-gray-500'>{day.format('MMM')}</p>
+
                   </div>
-                </td>
-                <td></td>
+                </div>
+              )
+            })
+          }
+          <button 
+          className='border rounded-full px-2 py-2 flex items-center'
+          onClick={() => {setCurrentDate(dayjs(currentDate).add(14, 'day'))}}><span className='text-xs'>Next</span><AiFillForward size={20}/></button>
+          
+        </div>
 
-                {room.status.map((status, index) => (
-                  <td key={index} className="p-2 border-r text-center">
-                    <div className={`flex items-center justify-center w-8 h-8 rounded-full ${getStatusColor(status)} font-medium`}>
-                      {status}
-                    </div>
-                    <div className="text-xs mt-1 text-gray-600">{formatTime(index % 2 === 0 ? '12' : 'NA')}</div>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
-    </div>
-  );
-};
 
-export default HotelInventory;
+      {/* single room */}
+      <div className={`flex flex-col ${roomFilter === 'double'  ? 'hidden' : 'block'}`}>
+      <div className='grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit  '>
+
+        <div className='py-3  max-w-fit px-2'>
+          <p onClick={() => setShowRooms(!showRooms)} className='flex gap-2 items-center py-3  w-fit'>Single Room (02)<span className={`transition-all duration-300 ${showRooms ? '--rotate-180' : '-rotate-180'}`}><AiOutlineDown/></span></p>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            singleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+      <div className={`grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit   ${showRooms ? 'hidden' : 'block'}`}>
+
+        <div className='py-3  max-w-full flex justify-between items-center px-2'>
+          <p onClick={() => setShowRooms(!showRooms)} className='flex gap-2 items-center py-3  w-fit'>101</p>
+          <div className='flex gap-2'>
+          <MdOutlineSmokeFree className='text-black/40 dark:text-white size-5' />
+          <CleanLogo className='text-black/40 dark:text-white size-5'/>
+          </div>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            singleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+      <div className={`grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit  ${showRooms ? 'hidden' : 'block'}`}>
+
+        <div className='py-3  max-w-full px-2 flex justify-between items-center'>
+          <p onClick={() => setShowRooms(!showRooms)} className='flex gap-2 items-center py-3  w-fit'>102</p>
+          <div className='flex gap-2'>
+          <MdOutlineSmokeFree className='text-black/40 dark:text-white size-5' />
+          <CleanLogo className='text-black/40 dark:text-white size-5'/>
+          </div>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            singleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+
+      </div>
+
+      {/* double room */}
+      <div className={`flex flex-col ${roomFilter === 'single'? 'hidden' : 'block'}`}>
+      <div className='grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit border-b '>
+
+        <div className='py-3  max-w-fit px-2'>
+          <p onClick={() => setShowDouble(!showDouble)} className='flex gap-2 items-center py-3  w-fit'>Double Room (04)<span className={`transition-all duration-300 ${showDouble ? '--rotate-180' : '-rotate-180'}`}><AiOutlineDown/></span></p>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            doubleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+      <div className={`grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit border-b  ${showDouble ? 'hidden' : 'block'}`}>
+
+        <div className='py-3  max-w-full px-2 flex justify-between items-center '>
+          <p onClick={() => setShowDouble(!showDouble)} className='flex gap-2 items-center py-3  w-fit'>201</p>
+          <div className='flex gap-2'>
+          <MdOutlineSmokeFree className='text-black/40 dark:text-white size-5' />
+          <CleanLogo className='text-black/40 dark:text-white size-5'/>
+          <MdOutlinePets className='text-black/40 dark:text-white size-5' />
+          </div>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            singleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+      <div className={`grid grid-cols-[3fr_1fr_16fr_1fr] border-t border-gray-300 px-2  bg-[#fffefe] dark:bg-inherit border-b  ${showDouble ? 'hidden' : 'block'}`}>
+
+        <div className='py-3  max-w-full px-2 flex justify-between items-center'>
+          <p onClick={() => setShowDouble(!showDouble)} className='flex gap-2 items-center py-3  w-fit'>202</p>
+          <div className='flex gap-2'>
+          <MdOutlineSmokeFree className='text-black/40 dark:text-white size-5' />
+          <CleanLogo className='text-black/40 dark:text-white size-5'/>
+          <MdOutlinePets className='text-black/40 dark:text-white size-5' />
+          </div>
+        </div>
+          <div></div>
+        <div className='flex  items-center '>
+          
+          {
+            singleRoom.slice(0,14).map((room,index) => {
+              return (
+              <div className='border-x w-full '>
+                <div key={index} className='flex mx-auto justify-center'>
+                  <div  className='flex flex-col items-center'>
+                    <div className='flex gap-1 items-center'>
+                        <p className='rounded-full text-xs  border bg-[#D5FCC1] px-2 py-1'>{room.vacant}</p>
+                        <p className='rounded-full text-xs  border bg-[#EEEEEE] px-2 py-1'>{room.booked}</p>
+                      </div>
+                    <p className='text-sm text-gray-600'>{room.price}</p>
+                  </div>
+              
+                </div>
+              </div>
+              )
+            })
+          }
+        </div>
+          <div></div>
+        </div>
+
+      </div>
+        
+
+    </div>
+  )
+}
+
+export default HotelInventory

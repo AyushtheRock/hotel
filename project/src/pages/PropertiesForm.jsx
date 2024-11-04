@@ -20,7 +20,7 @@ const PropertiesForm = ({ darkMode = false }) => {
     } 
 
   return (
-    <div className='px-10 py-8 bg-[#F9F9F9] dark:text-white  dark:bg-[#080F26]'>
+    <div className='px-10  bg-[#F9F9F9] dark:text-white  dark:bg-[#080F26] mb-6'>
        <div className=''>
             <div className='flex justify-between items-center w-full h-20'>
                     <div className='flex items-center gap-3'>
@@ -33,7 +33,7 @@ const PropertiesForm = ({ darkMode = false }) => {
                     </div>
                 </div>
             <div>
-                <div className='border rounded border-black dark:border-white  '>
+                <div className='border rounded border-black dark:border-white  max-h-fit'>
                     <ul className='flex flex-row gap-2 pt-3 bg-[#D9D9D9]  dark:bg-[#071025] px-2 flex-wrap '>
                         <button onClick={(e)=>handleChange(e.target.value)} value='Details' className={`${showDetails === 'Details' ? 'border  border-transparent rounded px-4 py-1 bg-white dark:bg-[#0c1c41]' : 'border  border-transparent rounded px-4 py-1'}`} >Details</button>
                         <button onClick={(e)=>handleChange(e.target.value)} value='Content' className={`${showDetails === 'Content' ? 'border  border-transparent rounded px-4 py-1 bg-white dark:bg-[#0c1c41]' : 'border  border-transparent rounded px-4 py-1'}`} >Content</button>
@@ -42,7 +42,7 @@ const PropertiesForm = ({ darkMode = false }) => {
                         <button onClick={(e)=>handleChange(e.target.value)} value='Policies' className={`${showDetails === 'Policies' ? 'border  border-transparent rounded px-4 py-1 bg-white dark:bg-[#0c1c41]' : 'border  border-transparent rounded px-4 py-1'}`} >Policies</button>
                         <button onClick={(e)=>handleChange(e.target.value)} value='Tax' className={`${showDetails === 'Tax' ? 'border  border-transparent rounded px-4 py-1 bg-white dark:bg-[#0c1c41]' : 'border  border-transparent rounded px-4 py-1'}`} >Tax Sets</button>
                     </ul>
-                    <div className='px-4 bg-white dark:bg-[#0c1c41] h-full md:min-h-fit  sm:overflow-y-scroll md:overflow-hidden'>
+                    <div className='px-4 bg-white dark:bg-[#0c1c41]    sm:overflow-y-scroll '>
                         {
                             showDetails === 'Details'? <Details /> : ''
                         }
