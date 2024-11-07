@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddDiscountModal = ({ handleDiscountWindow,onClose, onSubmit }) => {
+const AddDiscountModal = ({ onClose, onSubmit }) => {
   const [discountType, setDiscountType] = useState('');
   const [discountAmount, setDiscountAmount] = useState('');
 
@@ -16,11 +16,8 @@ const AddDiscountModal = ({ handleDiscountWindow,onClose, onSubmit }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-1/3">
-      <div className='flex justify-between'>
         <h2 className="text-xl font-semibold mb-4">Apply Discount</h2>
-        <button onClick={handleDiscountWindow} className='bg-gray-200 dark:bg-black  border-solid border-1 h-[30px] w-[30px] text-center border-light-blue-500 px-1 rounded hover:bg-white hover:text-black'>x</button > 
-        
-        </div>
+
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">Select Discount</label>
           <select
@@ -29,14 +26,13 @@ const AddDiscountModal = ({ handleDiscountWindow,onClose, onSubmit }) => {
             className="w-full border border-gray-300 rounded p-2"
           >
             <option value="">Select a discount</option>
-            <option value="firstOrder">25% on first service</option>
-            <option value="coupon">15% off</option>
-            <option value="coupon">10% off</option>
+            <option value="firstOrder">Add Discount on First Order</option>
+            <option value="coupon">Add Coupon</option>
             {/* Add more options as needed */}
           </select>
         </div>
 
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <label className="block text-gray-700 mb-2">Discount Amount</label>
           <input
             type="number"
@@ -45,7 +41,7 @@ const AddDiscountModal = ({ handleDiscountWindow,onClose, onSubmit }) => {
             className="w-full border border-gray-300 rounded p-2"
             placeholder="Enter amount"
           />
-        </div> */}
+        </div>
 
         <div className="flex justify-end space-x-4">
           <button

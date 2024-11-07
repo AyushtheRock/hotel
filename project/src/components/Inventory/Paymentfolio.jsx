@@ -7,7 +7,7 @@ import AddDiscountModal from './AddDiscountModal';
 import { NavLink } from 'react-router-dom';
 
 
-const Inventory = () => {
+const Paymentfolio = () => {
   const [activeTab, setActiveTab] = useState('Folio Operations');
   const [isModalOpen, setIsModalOpen] = useState(false); // Manage modal visibility
   const [isChargesModalOpen, setIsChargesModalOpen] = useState(false);
@@ -252,4 +252,4 @@ const Inventory = () => {
     
   
 
-export default Inventory;
+export default Paymentfolio;

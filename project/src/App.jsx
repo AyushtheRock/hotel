@@ -15,11 +15,11 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import RoomsListing from './pages/RoomListing.jsx';
 import PropertiesForm from './pages/PropertiesForm.jsx';
-import BookingInterface from './components/Inventory/Inventory.jsx';
+import BookingInterface from './components/Inventory/Paymentfolio.jsx';
 import { ThemeProvider } from './context/theme.js';
 import BookingPage from './components/BookingSection/BookingPage.jsx';
 import HotelInventory from './components/Inventory/HotelInventory.jsx';
-import Inventory from './components/Inventory/Inventory.jsx';
+import Paymentfolio from './components/Inventory/Paymentfolio.jsx';
 
 
 const App = () => {
@@ -66,7 +66,7 @@ const App = () => {
               <Route path="/settings" element={<Settings />} />
               <Route path="/property/:id" element={<PropertyDashboard />} />
               <Route path="/inventory" element={<HotelInventory />} />
-              <Route path="/inventory/paymentfolio" element={<Inventory />} />
+              <Route path="/inventory/paymentfolio" element={<Paymentfolio />} />
 
               <Route path="/login" element={<Login />} /> {/* Add the Login route */}
             </Routes>

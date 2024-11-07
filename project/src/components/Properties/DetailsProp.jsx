@@ -1,8 +1,10 @@
 import React from 'react'
-import GoogleMap from '../GoogleMapDemo'
+import GoogleMapDemo from '../GoogleMapDemo'
 
 const Details = () => {
   
+  
+
   return (
     <div  className='flex flex-col py-4'>
       <div className='flex flex-col'>
@@ -62,15 +64,15 @@ const Details = () => {
                   <form className='flex flex-col gap-4  w-full' action="">
 
                     <label htmlFor="localAdd">
-                      <input type="text" id='localAdd' placeholder='Flat / door no / floor / building' className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300' />
+                      <input type="text" id='localAdd' placeholder='Flat / door no / floor / building' className='w-full py-2 px-3 border border-gray-200 bg-gray-100 dark:bg-[#071025] mt-2   text-[#A3A3A3]placeholder:text-gray-300' />
                     </label>
 
                     <label  htmlFor="Area">
-                      <input type="text" id='Area' placeholder='Area / sector ' className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300' />
+                      <input type="text" id='Area' placeholder='Area / sector ' className='w-full py-2 px-3 border border-gray-200 bg-gray-100 dark:bg-[#071025] mt-2   text-[#A3A3A3]placeholder:text-gray-300' />
                     </label>
 
                     <label htmlFor="city">
-                      <select name="city" id="city" className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300'>
+                      <select name="city" id="city" className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300 bg-gray-100 dark:bg-[#071025] mt-2   text-[#A3A3A3]'>
                         <option value="">City</option>
                         <option value="">Kolkata</option>
                         <option value="">Haydrabad</option>
@@ -78,11 +80,11 @@ const Details = () => {
                     </label>
 
                     <label  htmlFor="pCode">
-                      <input type="text" id='pCode' placeholder='Post Code' className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300' />
+                      <input type="text" id='pCode' placeholder='Post Code' className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300 bg-gray-100 dark:bg-[#071025] mt-2   text-[#A3A3A3]' />
                     </label>
 
                     <label  htmlFor="State">
-                      <select name="State" id="State" className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300'>
+                      <select name="State" id="State" className='w-full py-2 px-3 border border-gray-200 placeholder:text-gray-300 bg-gray-100 dark:bg-[#071025] mt-2   text-[#A3A3A3]'>
                         <option value="">State</option>
                         <option value="">West Bengal</option>
                         <option value="">Bihar</option>
@@ -92,8 +94,8 @@ const Details = () => {
                   </form>
                   
                 </div>
-                <div className='border h-12 w-full bg-red-300'>
-                  {/* <GoogleMap /> */}
+                <div className='border h-full w-full  bg-red-300'>
+                  <GoogleMapDemo />
                   
                   
                 </div>

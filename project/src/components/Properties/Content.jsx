@@ -69,14 +69,14 @@ export const Content = () => {
                                 <input type="file" id='Upload Image' hidden/>
                     </div>
                     
-                    <div>
+                    <div className='mt-3'>
                         <p>Description</p>
-                        <textarea  className='w-full  px-2  bg-gray-100 dark:bg-[#071025]'  type="text" placeholder='Enter description' rows={2} />
+                        <textarea  className='w-full  px-2 mt-2 bg-gray-100 dark:bg-[#071025]'  type="text" placeholder='Enter description' rows={2} />
                     </div>
 
                     <div>
                         <p>Enter Information</p>
-                        <textarea   className='w-full px-2  bg-gray-100 dark:bg-[#071025]' type="text" placeholder='Enter extra information' rows={2} />
+                        <textarea   className='w-full px-2 mt-2  bg-gray-100 dark:bg-[#071025]' type="text" placeholder='Enter extra information' rows={2} />
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@ export const Content = () => {
             <p className='text-xl'>Facilities</p>
             <div className='py-4'>
                 <p>Facilities</p>
-                <select className='w-1/2  rounded bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2'>
+                <select className='w-full mt-2 sm:w-1/2  rounded bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2'>
                     <option value="">select an option</option>
                 </select>
             </div>
@@ -97,17 +97,17 @@ export const Content = () => {
             <div className='sm:flex flex-col md:grid grid-cols-3 gap-4 py-4 '>
                 <div className=''>
                     <p>Permissions</p>
-                    <select className='w-full rounded bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2' >
+                    <select className='w-full rounded mt-2 bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2' >
                         <option value="">Enter address</option>
                     </select>
                 </div>
-                <div >
+                <div className='mt-3' >
                     <p>Is Parking Space Available</p> 
-                        <select className='w-full rounded bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2' >
+                        <select className='w-full rounded bg-gray-100 dark:bg-[#071025]  text-[#A3A3A3] h-10 px-2 mt-2'  >
                             <option value="">No</option>
                         </select>
                 </div>
-                <div className='flex items-center'>
+                <div className='flex items-center mt-3'>
                     <FormGroup><Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                         <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
                         <Typography>Couple Friendly</Typography>

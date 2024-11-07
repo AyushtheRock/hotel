@@ -1,30 +1,36 @@
-import React, { useCallback, useState } from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React from "react";
+import GoogleMapReact from 'google-map-react';
 
-    const containerStyle = {
-        width: '400px',
-        height: '400px'
-    };
-    const center = {
-        lat: -3.745,
-        lng: -38.523,
-    }
 
-const GoogleMapDemo = () => {
-
-    const [map , setMap] = useState(null)
-    const {isLoaded} = useJsApiLoader({
-        id : 'google-map-script',
-        googleMapsApiKey : ''
-    })
-
-    const onLoad = useCallback(function cb(map)  {
-
-    })
-
+const apiKey = import.meta.env.GOOGLE_MAP_API;
+const GoogleMapDemo = () =>{
+  const defaultProps = {
+    center: {
+      lat:  28.7041,
+      lng:  77.1025
+    },
+    zoom: 10
+  };
+   
+ 
+  
+  
   return (
-    <div>GoogleMap</div>
-  )
+    // Important! Always set the container height explicitly
+    <div className="w-full h-full">
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: apiKey }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        {/* <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        /> */}
+      </GoogleMapReact>
+    </div>
+  );
 }
 
 export default GoogleMapDemo

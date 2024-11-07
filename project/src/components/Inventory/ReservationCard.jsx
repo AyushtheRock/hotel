@@ -39,7 +39,7 @@ const ReservationCard = ({ handleClose, reservationDetails }) => {
         </div>
         <div className="mt-2">
           <button
-            className="bg-gray-200 dark:bg-black text-black px-4 py-1 rounded hover:bg-gray-300"
+            className="bg-gray-200 dark:bg-black text-black dark:text-white px-4 py-1 rounded hover:bg-gray-300"
             aria-label="Edit Reservation"
           >
             Edit Reservation

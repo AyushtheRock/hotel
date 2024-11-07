@@ -7,14 +7,14 @@ const Tax = () => {
          <div>
       <div className='px-4 my-8'>
         <div className='flex justify-between py-4'>
-          <div className='flex gap-12'>
+          <div className=' gap-12 hidden sm:flex'>
              
           </div>
-          <button className='border px-5 py-1 rounded bg-black text-white dark:bg-[#9B27D0]'>+ Add Tax</button>
+          <button className='w-full sm:w-fit border px-3 sm:px-5 py-1 rounded bg-black text-white dark:bg-[#9B27D0]'>+ Add Tax</button>
         </div>
 
-        <div className='border rounded-xl mt-4 overflow-hidden'> 
-            <ul className='items-center grid grid-cols-4 text-center border-b bg-[#F3F3F3] dark:bg-[#080F26] '>
+        <div className='border rounded-xl  sm:mt-4 overflow-hidden'> 
+            <ul className='items-center grid grid-cols-4 text-center border-b bg-[#F3F3F3] dark:bg-[#080F26] text-xs sm:text-lg '>
               <li className='border-r py-3'>Title</li>
               <li className='border-r py-3'>Currency</li>
               <li className='border-r py-3'>Tax</li>
