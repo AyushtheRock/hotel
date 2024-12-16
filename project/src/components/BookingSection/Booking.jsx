@@ -30,8 +30,8 @@ const Booking = () => {
         </div>
 
         {/* Right column with buttons */}
-        <div className="flex justify-center md:justify-end mt-4 md:mt-0">
-          <button className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 dark:bg-white dark:text-black">
+        <div className="flex justify-center md:justify-end mt-4 mr-5 md:mt-0">
+          <button className="bg-gray-300 w-[80px] h-[40px] rounded-lg hover:bg-gray-400 dark:bg-white dark:text-black">
             Check In
           </button>
         </div>

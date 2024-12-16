@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 // StatsCard Component
 const StatsCard = ({ stat }) => (
   <div className="shadow rounded-lg p-4 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
+  
+
     <div className="flex justify-between items-center">
       <div>
         <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>

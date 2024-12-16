@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 
-
 const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, total, paid }) => {
     const [showOptions, setShowOptions] = useState(false);
   
@@ -11,9 +10,8 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
       setShowOptions(false); // Close the options menu
     };
   
-  
     return (
-      <div className="bg-white rounded-lg shadow p-4 mb-4 dark:bg-[#0B1739] dark:text-white">
+      <div className="bg-gray-200 rounded-lg shadow p-4 mb-4 dark:bg-[#2d2d2d] dark:text-white">
         <div className="flex justify-between items-center mb-2">
           <div>
             <h3 className="font-semibold text-lg">{guest}</h3>
@@ -24,7 +22,7 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
               className="flex items-center cursor-pointer "
               onClick={() => setShowOptions(!showOptions)}
             >
-              <img src="/src/assets/og-goibibo.aba291ed.png" alt="goibibo" className="h-7 mr-5" />
+              <img src="/src/assets/og-goibibo.aba291ed.png" alt="goibibo" className="h-12 w-12 mr-5" />
               <span className="text-gray-400">⋮</span>
             </div>
             {showOptions && (
@@ -93,105 +91,105 @@ const BookingCard = ({ guest, nights, checkIn, checkOut, bookingDate, roomType, 
         </div>
       </div>
     );
-  };
-  
+};
 
 const BookingsDashboard = () => {
-  const [activeTab, setActiveTab] = useState('Reservations');
-  const tabs = ['Reservations', 'Arrivals', 'In House', 'Departures'];
+    const [activeTab, setActiveTab] = useState('Reservations');
+    const tabs = ['Reservations', 'Arrivals', 'In House', 'Departures'];
   
- 
-  const bookings = [
-    {
-      guest: 'Ithachi Uchiha',
-      nights: 3,
-      checkIn: '28/08/2024 09:30 AM',
-      checkOut: '31/08/2024 11:00 AM',
-      bookingDate: '20/08/2024',
-      roomType: 'Hotel',
-      total: '4,200.00',
-      paid: '4,200.00',
-    },
-    {
-      guest: 'Ithachi Uchiha',
-      nights: 3,
-      checkIn: '28/08/2024 09:30 AM',
-      checkOut: '31/08/2024 11:00 AM',
-      bookingDate: '20/08/2024',
-      roomType: 'Hotel',
-      total: '4,200.00',
-      paid: '4,200.00',
-    },
-    {
-      guest: 'Ithachi Uchiha',
-      nights: 3,
-      checkIn: '28/08/2024 09:30 AM',
-      checkOut: '31/08/2024 11:00 AM',
-      bookingDate: '20/08/2024',
-      roomType: 'Hotel',
-      total: '4,200.00',
-      paid: '4,200.00',
-    },
-  ];
+    const bookings_1 = [
+      {
+        guest: 'Ithachi Uchiha_1',
+        nights: 3,
+        checkIn: '28/08/2024 09:30 AM',
+        checkOut: '31/08/2024 11:00 AM',
+        bookingDate: '20/08/2024',
+        roomType: 'Hotel',
+        total: '4,200.00',
+        paid: '4,200.00',
+      },
+    ];
   
-  return (
-    <div className="container mx-auto p-4 dark:bg-[#0B1739] dark:text-white">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Bookings</h1>
-        <NavLink to={'/bookings/add-booking'}className="bg-black text-white px-4 py-2 rounded text-sm">
-          <button>Add Booking</button>
-        </NavLink>
-      </div>
- 
-      {/* Search and Check-in button */}
-      <div className="flex mb-4 space-x-2 items-center">
-        <div className="relative w-1/4"> {/* Decreased width of the search bar */}
-          <input
-            type="text"
-            placeholder="Search by booking"
-            className="w-full border rounded-md pl-10 pr-4 py-2 text-sm dark:bg-[#0B1739] dark:text-white"
-          />
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
+    const bookings_2 = [
+      {
+        guest: 'Ithachi Uchiha_2',
+        nights: 3,
+        checkIn: '28/08/2024 09:30 AM',
+        checkOut: '31/08/2024 11:00 AM',
+        bookingDate: '20/08/2024',
+        roomType: 'Hotel',
+        total: '4,200.00',
+        paid: '4,200.00',
+      },
+    ];
+  
+    const bookings_3 = [
+      {
+        guest: 'Ithachi Uchiha_3',
+        nights: 3,
+        checkIn: '28/08/2024 09:30 AM',
+        checkOut: '31/08/2024 11:00 AM',
+        bookingDate: '20/08/2024',
+        roomType: 'Hotel',
+        total: '4,200.00',
+        paid: '4,200.00',
+      },
+    ];
+  
+    return (
+      <div className="container mx-auto p-4 bg-gray-50 dark:bg-[#2d2d2d] dark:text-white">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold">Bookings</h1>
+          <NavLink to={'/bookings/add-booking'} className="bg-black text-white px-4 py-2 rounded text-sm">
+            <button>Add Booking</button>
+          </NavLink>
         </div>
-        <button className="border rounded-md px-4 py-2 flex items-center text-sm">
-          <span className="mr-2">📅</span>
-          Check In
-        </button>
-      </div>
-
-
-
-
-
-      {/* Tabs */}
-
-      
-      <div className="flex border-x-slate-900 dark:bg-[#0B1739] dark:text-white">
-        {tabs.map((tab) => (
-          <button
+  
+        {/* Tabs */}
+        <div className="flex border-x-slate-900 dark:bg-[#0B1739] dark:text-white">
+          {tabs.map((tab) => (
+            <button
             key={tab}
             className={`px-4 py-2 text-sm transition-all dark:bg-[#0B1739] dark:text-white duration-200 ${
               activeTab === tab
-                ? 'border-b-2 font-semibold border-x-2 border-t dark:bg-[#0B1739] dark:text-white  border-l border-x-black border-t-black text-black border-b-green-700'
+                ? 'border-2 border-black font-semibold dark:bg-[#0B1739] dark:text-white text-black'
                 : 'text-gray-500 hover:text-black dark:bg-[#0B1739] dark:text-white'
             }`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
           </button>
-        ))}
+          ))}
+        </div>
+  
+        {/* Booking Sections in Horizontal Format */}
+        <div className="flex mt-4 space-x-4">
+          {/* Section 1 - Red Border */}
+          <div className="border border-red-500 rounded-lg p-4 mx-4">
+            <h2 className="text-lg font-semibold mb-2">Reservations</h2>
+            {bookings_1.map((booking, index) => (
+              <BookingCard key={index} {...booking} />
+            ))}
+          </div>
+  
+          {/* Section 2 - Red Border */}
+          <div className="border border-red-500 rounded-lg p-4 mx-4">
+            <h2 className="text-lg font-semibold mb-2">Arrivals</h2>
+            {bookings_2.map((booking, index) => (
+              <BookingCard key={index} {...booking} />
+            ))}
+          </div>
+  
+          {/* Section 3 - Red Border */}
+          <div className="border border-red-500 rounded-lg p-4 mx-4">
+            <h2 className="text-lg font-semibold mb-2">In House</h2>
+            {bookings_3.map((booking, index) => (
+              <BookingCard key={index} {...booking} />
+            ))}
+          </div>
+        </div>
       </div>
-
-      {/* Booking Cards */}
-      <div className='border border-x-black border-b-black border-t-red-600 dark:bg-[#0B1739] dark:text-white'>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 dark:bg-[#0B1739] dark:text-white">
-        {bookings.map((booking, index) => (
-          <BookingCard key={index} {...booking} />
-        ))}
-      </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default BookingsDashboard;

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import rakeshDp from '../../assets/rrakesh.png';
+import vikasDp from '../../assets/vikas.svg';
 
 // Complaints Component
 const Complaints = ({ data }) => (
-  <div className="rounded-lg p-6 bg-white dark:bg-[#1e293b] text-gray-800 dark:text-white w-full max-w-md mx-auto border border-gray-300 dark:border-gray-600">
+  <div className="rounded-lg p-6 bg-green-100 dark:bg-[#1e293b] text-gray-800 dark:text-white w-full max-w-md mx-auto border border-gray-300 dark:border-gray-600">
     <div className="flex items-center mb-6">
       <div className="w-8 h-8 bg-[#8b5cf6] rounded-lg flex items-center justify-center mr-3">
         <svg
@@ -30,7 +32,12 @@ const Complaints = ({ data }) => (
       {data.map((complaint, index) => (
         <div key={index} className="flex flex-col space-y-2">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full flex-shrink-0"></div>
+            {/* Profile Picture */}
+            <img
+              src={complaint.dp}
+              alt={`${complaint.user}'s profile`}
+              className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
+            />
             <div>
               <p className="font-semibold text-lg">{complaint.user}</p>
               <p className="text-sm text-gray-500 dark:text-gray-400">{complaint.location}</p>
@@ -56,6 +63,7 @@ Complaints.propTypes = {
       location: PropTypes.string.isRequired,
       complaint: PropTypes.string.isRequired,
       loss: PropTypes.number.isRequired,
+      dp: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
@@ -63,8 +71,8 @@ Complaints.propTypes = {
 // Data to be integrated
 export const ComplaintsData = () => {
   const data = [
-    { user: "Rakesh", location: "Yellow Bells Gachibowli", complaint: "TV damaged", loss: 20000 },
-    { user: "Vikas", location: "Rofabs Retreat", complaint: "Heater not working", loss: 20000 },
+    { user: "Rakesh", location: "Yellow Bells Gachibowli", complaint: "TV damaged", loss: 20000, dp: rakeshDp },
+    { user: "Vikas", location: "Rofabs Retreat", complaint: "Heater not working", loss: 10000, dp: vikasDp },
   ];
 
   return <Complaints data={data} />;

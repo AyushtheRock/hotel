@@ -1,4 +1,6 @@
 import React from 'react';
+import { assests } from '../assets/assests';
+
 
 const RoomRow = ({ image, title, description, property, roomType }) => { 
   return (
@@ -36,17 +38,17 @@ const RoomsListing = () => {
 
   const rooms = [
     {
-      image: 'https://via.placeholder.com/150x150.png?text=Room+1',
+      image: assests.singledp,
       title: 'Room Type 1',
       description: 'Room description...',
       property: 'Property 1',
       roomType: 'Single Bed',
     },
     {
-      image: 'https://via.placeholder.com/150x150.png?text=Room+2',
-      title: 'Room Type 1',
+      image: assests.doubledp,
+      title: 'Room Type 2',
       description: 'Room description...',
-      property: 'Property 1',
+      property: 'Property 2',
       roomType: 'Double Bed',
     },
   ];

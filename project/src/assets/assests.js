@@ -4,6 +4,8 @@ import file from './file.svg'
 import cross from './cross.svg'
 import logo from './rofab.svg'
 import sidebarBack_icon from './back_icon.svg'
+import singledp from './single.jpeg'
+import doubledp from './double.jpeg'
 
 export const assests = {
     back_icon,
@@ -12,6 +14,8 @@ export const assests = {
     cross,
     logo ,
     sidebarBack_icon,
+    singledp,
+    doubledp,
     
     
     

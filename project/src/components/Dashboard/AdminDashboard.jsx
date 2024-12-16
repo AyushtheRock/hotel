@@ -21,7 +21,7 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
+    <div className="p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 bg-pink-100 dark:bg-gray-800 text-gray-800 dark:text-white">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white">Overview</h2>
         <select className="px-3 py-1 rounded border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
@@ -54,23 +54,23 @@ const AdminDashboard = () => {
           <LineChart data={data}>
             <XAxis 
               dataKey="name" 
-              stroke={isDarkMode ? 'white' : 'black'}  // Dark mode: white, Light mode: black
-              tick={{ fill: isDarkMode ? 'white' : 'black' }}    // Adjust tick color based on mode
-              axisLine={{ stroke: isDarkMode ? 'white' : 'black' }}  // X axis line color based on mode
-              tickLine={{ stroke: isDarkMode ? 'white' : 'black' }}  // Tick line color based on mode
+              stroke={isDarkMode ? 'white' : 'black'}
+              tick={{ fill: isDarkMode ? 'white' : 'black' }}
+              axisLine={{ stroke: isDarkMode ? 'white' : 'black' }}
+              tickLine={{ stroke: isDarkMode ? 'white' : 'black' }}
             />
             <YAxis 
-              stroke={isDarkMode ? 'white' : 'black'}  // Dark mode: white, Light mode: black
-              tick={{ fill: isDarkMode ? 'white' : 'black' }}    // Adjust tick color based on mode
-              axisLine={{ stroke: isDarkMode ? 'white' : 'black' }}  // Y axis line color based on mode
-              tickLine={{ stroke: isDarkMode ? 'white' : 'black' }}  // Tick line color based on mode
+              stroke={isDarkMode ? 'white' : 'black'}
+              tick={{ fill: isDarkMode ? 'white' : 'black' }}
+              axisLine={{ stroke: isDarkMode ? 'white' : 'black' }}
+              tickLine={{ stroke: isDarkMode ? 'white' : 'black' }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: isDarkMode ? '#374151' : '#ffffff',  // Adjust background based on mode
-                borderColor: isDarkMode ? '#4B5563' : '#cccccc',      // Adjust border based on mode
+                backgroundColor: isDarkMode ? '#374151' : '#ffffff',
+                borderColor: isDarkMode ? '#4B5563' : '#cccccc',
               }}
-              itemStyle={{ color: isDarkMode ? '#ffffff' : '#000000' }}  // Adjust text color based on mode
+              itemStyle={{ color: isDarkMode ? '#ffffff' : '#000000' }}
               formatter={(value, name) => [value, name === 'Visited' ? 'Visited' : 'Booked']}
               labelFormatter={(label) => `Day: ${label}`}
             />
