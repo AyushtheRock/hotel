@@ -50,40 +50,9 @@ const Sidebar = () => {
           </NavLink>
           <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/roomtype'}>
             <FaBed className='flex-shrink-0' />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Room Type</p>
+            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Room Types</p>
           </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/users'}>
-            <FaUsersGear />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Users</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings1'}>
-            <FaCartPlus className='flex-shrink-0'/>
-            <p className={`${visible?'hidden md:block':'md:hidden '}`}>Material Management</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings2'}>
-            <GiForkKnifeSpoon className='flex-shrink-0' />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>KSR</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings3'}>
-            <GiBrokenShield className='flex-shrink-0' />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Damages</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings4'}>
-            <FaIdCard className='flex-shrink-0' />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Employee Management</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings5'}>
-            <FaHotel className='flex-shrink-0'/>
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Banquet Management</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings6'}>
-            <RiQuestionnaireFill className='flex-shrink-0' />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Complaints</p>
-          </NavLink>
-          <NavLink className={({isActive})=>`flex items-center gap-3  px-3 md:px-5 lg:px-8 fill-black dark:fill-white   cursor-pointer ${isActive ? ' dark:bg-[#080c1a] dark:text-white p-4 text-black bg-[#F9F9F9]  rounded-3xl rounded-r-none' : ''}`} to={'/settings7'}>
-            <MdOutlineSettingsSuggest />
-            <p className={`${visible?'hidden md:block':'md:hidden'}`}>Settings</p>
-          </NavLink>
+         
         </ul>
         
        </div>  
